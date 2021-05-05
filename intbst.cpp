@@ -78,7 +78,10 @@ void IntBST::printInOrder() const {
     printInOrder(root);
 }
 void IntBST::printInOrder(Node *n) const {
-    // IMPLEMENT HERE
+    if(!n) {return;}
+    printInOrder(n->left);
+    cout << n->info << " ";
+    printInOrder(n->right);
 }
 
 // prints tree data post-order, with helper
@@ -87,7 +90,10 @@ void IntBST::printPostOrder() const {
 }
 
 void IntBST::printPostOrder(Node *n) const {
-    // IMPLEMENT HERE
+    if(!n){return;}
+    printPostOrder(n->left);
+    printPostOrder(n->right);
+    cout << n->info << " ";
 }
 
 // return sum of values in tree
@@ -117,12 +123,27 @@ int IntBST::count(Node *n) const {
 // Whenever you call this method from somewhere else, pass it
 // the root node as "n"
 IntBST::Node* IntBST::getNodeFor(int value, Node* n) const{
-    return NULL; // REPLACE THIS NON-SOLUTION
+    if(n){
+        if(value == n->info){
+            return n;
+        }
+        else if( value <= n->info){
+            return getNodeFor(value, n->left);
+        }
+        else{
+            return getNodeFor(value, n->right);
+        }
+    }
+    return NULL;
 }
 
 // returns true if value is in the tree; false if not
 bool IntBST::contains(int value) const {
-    return true; // REPLACE THIS NON-SOLUTION
+   
+
+    return true;
+    
+    // REPLACE THIS NON-SOLUTION
 }
 
 // returns the Node containing the predecessor of the given value
